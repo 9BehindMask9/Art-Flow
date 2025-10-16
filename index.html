@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ArtFlow AI Portfolio Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <div class="brand">
+        <span class="brand-mark">ArtFlow</span>
+        <span class="brand-subtitle">AI Portfolio Studio</span>
+      </div>
+      <div class="project-meta">
+        <label for="project-title" class="project-label">Project Title</label>
+        <input id="project-title" class="project-input" type="text" placeholder="Untitled Portfolio" />
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel history" aria-label="Conversation history">
+        <div class="panel-header">
+          <h2>History</h2>
+          <button class="ghost-button" id="clear-history" type="button">Clear</button>
+        </div>
+        <div class="history-list" id="history-list" role="list"></div>
+        <div class="history-actions">
+          <button class="primary-button" id="save-history" type="button">Save current chat</button>
+          <p class="hint">Saved sessions help you revisit earlier explorations.</p>
+        </div>
+      </section>
+
+      <section class="panel chat" aria-label="AI assistant chat">
+        <div class="chat-scroll" id="chat-log" aria-live="polite"></div>
+
+        <div class="preset-questions" aria-label="Suggested prompts">
+          <span class="preset-label">Suggested questions</span>
+          <div class="preset-grid">
+            <button class="preset-button" data-question="What is the overarching theme of my portfolio?">Theme of my portfolio?</button>
+            <button class="preset-button" data-question="Can you outline the strengths of my recent work?">Strengths of my work?</button>
+            <button class="preset-button" data-question="What improvements would resonate with art directors?">Improvements for art directors?</button>
+            <button class="preset-button" data-question="How should I organize case studies for clarity?">Case study organization tips?</button>
+          </div>
+        </div>
+
+        <form class="composer" id="chat-form">
+          <button class="upload-button" id="upload-trigger" type="button" aria-label="Upload reference files">
+            <span class="icon">+</span>
+          </button>
+          <input id="file-input" class="hidden" type="file" multiple aria-hidden="true" />
+          <input id="chat-input" class="composer-input" type="text" placeholder="Ask the AI about your portfolio" required autocomplete="off" />
+          <button class="send-button" type="submit">Send</button>
+        </form>
+        <div class="upload-hint" id="upload-hint"></div>
+      </section>
+
+      <aside class="panel canvas" aria-label="Portfolio planning canvas">
+        <h2>Portfolio Canvas</h2>
+        <p class="canvas-intro">Use this scaffolding to plan each page before you build it.</p>
+        <div class="canvas-sections" id="canvas-sections"></div>
+        <button class="ghost-button" id="add-page" type="button">Add page</button>
+      </aside>
+    </main>
+  </div>
+
+  <template id="history-card-template">
+    <article class="history-card" role="listitem">
+      <header>
+        <h3></h3>
+        <time></time>
+      </header>
+      <p class="history-summary"></p>
+    </article>
+  </template>
+
+  <template id="canvas-section-template">
+    <section class="canvas-card">
+      <header class="canvas-card-header">
+        <h3 class="canvas-page-title"></h3>
+        <button class="ghost-button ghost-small" type="button" data-action="focus">Focus</button>
+      </header>
+      <ul class="canvas-suggestions"></ul>
+    </section>
+  </template>
+
+  <template id="chat-message-template">
+    <div class="chat-row">
+      <div class="avatar" data-role="user">User</div>
+      <div class="bubble" data-role="user"></div>
+    </div>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
